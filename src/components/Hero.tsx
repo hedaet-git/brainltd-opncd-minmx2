@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Button } from "./ui/Button";
@@ -59,9 +60,9 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <Button variant="primary" size="lg" asChild>
-                <a href={hero.ctaLink}>{hero.cta}</a>
-              </Button>
+              <Link href={hero.ctaLink} className="inline-flex items-center justify-center font-medium bg-charcoal text-warm-off-white px-8 py-4 text-lg hover:bg-muted-brass transition-all duration-300">
+                {hero.cta}
+              </Link>
               <Button variant="outline" size="lg" className="border-warm-off-white text-warm-off-white hover:bg-warm-off-white hover:text-charcoal">
                 View Portfolio
               </Button>
