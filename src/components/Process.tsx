@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { PenTool, FileText, Hammer } from "lucide-react";
 import { Section } from "./ui/Section";
 import { Container } from "./ui/Container";
+import { TextReveal } from "./animations/TextReveal";
 import { process } from "@/data/content";
 
 const iconMap = {
@@ -26,9 +27,11 @@ export function Process() {
           <p className="text-muted-brass tracking-[0.2em] uppercase text-sm mb-4">
             How We Work
           </p>
-          <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl text-warm-off-white">
-            Our Process
-          </h2>
+          <TextReveal>
+            <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl text-warm-off-white">
+              Our Process
+            </h2>
+          </TextReveal>
         </motion.div>
 
         <div className="relative">
@@ -46,20 +49,29 @@ export function Process() {
                   transition={{ duration: 0.6, delay: index * 0.2 }}
                   className="relative"
                 >
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-20 h-20 rounded-full bg-charcoal border-2 border-muted-brass flex items-center justify-center mb-6 relative z-10">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="flex flex-col items-center text-center"
+                  >
+                    <div className="w-20 h-20 rounded-full bg-charcoal border-2 border-muted-brass flex items-center justify-center mb-6 relative z-10 group-hover:scale-110 transition-transform">
                       <Icon className="w-8 h-8 text-muted-brass" />
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-muted-brass text-charcoal font-playfair font-bold flex items-center justify-center mb-4">
+                    <motion.div
+                      className="w-8 h-8 rounded-full bg-muted-brass text-charcoal font-playfair font-bold flex items-center justify-center mb-4"
+                      whileInView={{ scale: [0, 1.2, 1] }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.2 + 0.3 }}
+                    >
                       {step.phase}
-                    </div>
+                    </motion.div>
                     <h3 className="font-playfair text-2xl text-warm-off-white mb-3">
                       {step.title}
                     </h3>
                     <p className="text-warm-off-white/60 leading-relaxed max-w-xs">
                       {step.description}
                     </p>
-                  </div>
+                  </motion.div>
                 </motion.div>
               );
             })}

@@ -31,36 +31,61 @@ export function Header() {
       <Container>
         <div className="flex items-center justify-between h-20 md:h-24">
           <Link href="/" className="flex items-center gap-2">
-            <span className="font-playfair text-2xl md:text-3xl font-bold text-warm-off-white tracking-wide">
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="font-playfair text-2xl md:text-3xl font-bold text-warm-off-white tracking-wide"
+            >
               BRAIN<span className="text-muted-brass">.</span>
-            </span>
+            </motion.span>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-8">
-            {navigation.map((item) => (
-              <Link
+            {navigation.map((item, index) => (
+              <motion.div
                 key={item.href}
-                href={item.href}
-                className="text-warm-off-white/80 hover:text-muted-brass text-sm font-medium tracking-wider uppercase transition-colors duration-300"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                {item.label}
-              </Link>
+                <Link
+                  href={item.href}
+                  className="text-warm-off-white/80 hover:text-muted-brass text-sm font-medium tracking-wider uppercase transition-colors duration-300 relative"
+                >
+                  {item.label}
+                  <motion.span
+                    className="absolute -bottom-1 left-0 h-px bg-muted-brass"
+                    initial={{ width: 0 }}
+                    whileHover={{ width: "100%" }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </Link>
+              </motion.div>
             ))}
           </nav>
 
-          <div className="hidden lg:block">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="hidden lg:block"
+          >
             <Button variant="secondary" size="sm">
               {hero.cta}
             </Button>
-          </div>
+          </motion.div>
 
-          <button
+          <motion.button
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             className="lg:hidden text-warm-off-white p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
+            whileTap={{ scale: 0.9 }}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          </motion.button>
         </div>
       </Container>
 
@@ -73,19 +98,31 @@ export function Header() {
             className="lg:hidden bg-charcoal/98 backdrop-blur-lg border-t border-white/10"
           >
             <nav className="flex flex-col p-6 gap-4">
-              {navigation.map((item) => (
-                <Link
+              {navigation.map((item, index) => (
+                <motion.div
                   key={item.href}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-warm-off-white/80 hover:text-muted-brass text-lg font-medium tracking-wider uppercase py-2 transition-colors"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
                 >
-                  {item.label}
-                </Link>
+                  <Link
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-warm-off-white/80 hover:text-muted-brass text-lg font-medium tracking-wider uppercase py-2 transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                </motion.div>
               ))}
-              <Button variant="secondary" className="mt-4">
-                {hero.cta}
-              </Button>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                <Button variant="secondary" className="mt-4">
+                  {hero.cta}
+                </Button>
+              </motion.div>
             </nav>
           </motion.div>
         )}

@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Instagram, ArrowRight, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Instagram, ArrowRight } from "lucide-react";
 import { Section } from "./ui/Section";
 import { Container } from "./ui/Container";
 import { Button } from "./ui/Button";
+import { TextReveal } from "./animations/TextReveal";
 import { company } from "@/data/content";
 
 export function Footer() {
@@ -34,26 +35,47 @@ export function Footer() {
             <p className="text-muted-brass tracking-[0.2em] uppercase text-sm mb-4">
               Get In Touch
             </p>
-            <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl text-warm-off-white mb-8">
-              Let&apos;s Create Together
-            </h2>
-            <p className="text-warm-off-white/70 text-lg leading-relaxed mb-12">
+            <TextReveal direction="up" delay={0.1}>
+              <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl text-warm-off-white mb-8">
+                Let&apos;s Create Together
+              </h2>
+            </TextReveal>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-warm-off-white/70 text-lg leading-relaxed mb-12"
+            >
               Ready to transform your space into something extraordinary? 
               Contact us for a consultation and let&apos;s bring your vision to life.
-            </p>
+            </motion.p>
 
             <div className="space-y-6 mb-12">
-              {company.locations.map((location) => (
-                <div key={location.city} className="flex items-start gap-4">
+              {company.locations.map((location, index) => (
+                <motion.div
+                  key={location.city}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="flex items-start gap-4"
+                >
                   <MapPin className="w-5 h-5 text-muted-brass mt-1 flex-shrink-0" />
                   <div>
                     <p className="text-warm-off-white font-medium">{location.city} ({location.area})</p>
                     <p className="text-warm-off-white/60 text-sm">{location.type}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
 
-              <div className="flex items-start gap-4">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="flex items-start gap-4"
+              >
                 <Phone className="w-5 h-5 text-muted-brass mt-1 flex-shrink-0" />
                 <div>
                   {company.phone.map((phone) => (
@@ -66,9 +88,15 @@ export function Footer() {
                     </a>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start gap-4">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="flex items-start gap-4"
+              >
                 <Mail className="w-5 h-5 text-muted-brass mt-1 flex-shrink-0" />
                 <a
                   href={`mailto:${company.email}`}
@@ -76,9 +104,15 @@ export function Footer() {
                 >
                   {company.email}
                 </a>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start gap-4">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="flex items-start gap-4"
+              >
                 <Instagram className="w-5 h-5 text-muted-brass mt-1 flex-shrink-0" />
                 <a
                   href={`https://instagram.com/${company.social.instagram.replace("@", "")}`}
@@ -88,7 +122,7 @@ export function Footer() {
                 >
                   {company.social.instagram}
                 </a>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -100,7 +134,12 @@ export function Footer() {
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                >
                   <label htmlFor="name" className="block text-warm-off-white/70 text-sm mb-2">
                     Name
                   </label>
@@ -112,8 +151,13 @@ export function Footer() {
                     className="w-full bg-white/5 border border-white/10 text-warm-off-white px-4 py-3 focus:outline-none focus:border-muted-brass transition-colors"
                     required
                   />
-                </div>
-                <div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                >
                   <label htmlFor="email" className="block text-warm-off-white/70 text-sm mb-2">
                     Email
                   </label>
@@ -125,10 +169,15 @@ export function Footer() {
                     className="w-full bg-white/5 border border-white/10 text-warm-off-white px-4 py-3 focus:outline-none focus:border-muted-brass transition-colors"
                     required
                   />
-                </div>
+                </motion.div>
               </div>
 
-              <div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 <label htmlFor="phone" className="block text-warm-off-white/70 text-sm mb-2">
                   Phone
                 </label>
@@ -139,9 +188,14 @@ export function Footer() {
                   onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
                   className="w-full bg-white/5 border border-white/10 text-warm-off-white px-4 py-3 focus:outline-none focus:border-muted-brass transition-colors"
                 />
-              </div>
+              </motion.div>
 
-              <div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 <label htmlFor="message" className="block text-warm-off-white/70 text-sm mb-2">
                   Message
                 </label>
@@ -153,11 +207,16 @@ export function Footer() {
                   className="w-full bg-white/5 border border-white/10 text-warm-off-white px-4 py-3 focus:outline-none focus:border-muted-brass transition-colors resize-none"
                   required
                 />
-              </div>
+              </motion.div>
 
-              <Button type="submit" variant="secondary" size="lg" className="w-full md:w-auto">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit"
+                className="inline-flex items-center justify-center font-medium bg-muted-brass text-charcoal px-8 py-4 text-lg hover:bg-warm-off-white transition-all duration-300 w-full md:w-auto"
+              >
                 Send Message <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
+              </motion.button>
             </form>
           </motion.div>
         </div>

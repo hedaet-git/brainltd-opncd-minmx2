@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { LoadingScreen } from "@/components/LoadingScreen";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -46,7 +48,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${playfair.variable} ${inter.variable} min-h-full antialiased`}>
-        {children}
+        <LoadingScreen minimumDuration={2500} />
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );
