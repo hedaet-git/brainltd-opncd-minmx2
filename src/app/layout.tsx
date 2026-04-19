@@ -17,7 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Brain Ltd. | Award-Winning Interior Design Bangladesh",
+  title: "Brain Ltd. | Premium 3D Interior Design Bangladesh",
   description: "Brain Ltd. - Bangladesh's premier interior design consultancy. We craft experiences, not just spaces. Commercial, Residential, and Retail interior design. Founded by Symon (Award-winning Designer) & Royal Khan.",
   keywords: ["interior design", "Bangladesh", "Brain Ltd.", "commercial interior", "residential interior", "luxury design", "Dhaka", "Jessore"],
   authors: [{ name: "Brain Ltd." }],
